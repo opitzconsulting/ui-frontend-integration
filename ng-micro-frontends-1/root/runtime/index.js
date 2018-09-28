@@ -1,8 +1,36 @@
 console.log("starting server...");
+// Parse Parameters
+const params = {
+  liveServerPort: null
+};
+let i = 0;
+while (i < process.argv.length) {
+  const cmd = process.argv[i];
+  switch (cmd) {
+    case "--live-server-port":
+      const value = process.argv[i + 1];
+      if (value !== undefined && value !== null && value !== "") {
+        params.liveServerPort = parseInt(value.trim(), 10);
+        ++i;
+      }
+      break;
+  }
+  ++i;
+}
+
+if (params.liveServerPort) {
+  console.log(` `);
+  console.log(
+    ` Using Live-Server http://localhost:${
+      params.staticServerPort
+    } for change detection and reload strategy`
+  );
+  console.log(` `);
+}
 
 const express = require("express");
 const path = require("path");
-const http = require("http");
+const request = require("request");
 
 const port = 8000;
 
@@ -22,6 +50,21 @@ app.use((req, res, next) => {
 app.listen(port, () =>
   console.log(`server started on port ${port} successfully.`)
 );
+
+// if live server port is given as an argument, use port to proxy update requests to the live server.
+if (params.liveServerPort) {
+  app.use((req, res, next) => {
+    if (
+      /^\/(sockjs-node|__webpack_dev_server__)\/.*/.test(req.originalUrl) ===
+      true
+    ) {
+      let url = "http://localhost:" + params.liveServerPort + req.originalUrl;
+      req.pipe(request(url)).pipe(res);
+    } else {
+      next();
+    }
+  });
+}
 
 const staticPath = path.join(__dirname, "./static");
 app.use(express.static(staticPath));

@@ -47,16 +47,23 @@ const terminate = () => {
 process.on("SIGINT", terminate);
 // Parse Parameters
 const params = {
-  develop: null
+  develop: null,
+  liveServerPort: null
 };
 let i = 0;
 while (i < process.argv.length) {
   const cmd = process.argv[i];
+  const value = process.argv[i + 1];
   switch (cmd) {
     case "--develop":
-      const value = process.argv[i + 1];
       if (value !== undefined && value !== null && value !== "") {
         params.develop = value;
+        ++i;
+      }
+      break;
+    case "--live-server-port":
+      if (value !== undefined && value !== null && value !== "") {
+        params.liveServerPort = parseInt(value, 10);
         ++i;
       }
       break;
@@ -68,8 +75,13 @@ if (!params.develop) {
   console.log(
     ` For development you can avoid starting a server by using this script with parameter --develop and modul name: e.g. --develop product`
   );
+  console.log(
+    ` Additional, when serving a module from a live server (by using ng serve), you can set the parameter --live-server-port 4200 to detect file changes and automatically reload.`
+  );
   console.log(` `);
+  params.liveServerPort = null;
 }
+
 // Determinate base path
 const basePath =
   path
@@ -109,7 +121,12 @@ log("", `starting servers...`);
 let lastTimeout = null;
 const startServer = server => {
   log("", `starting ${server.name} server (${server.path})`);
-  server.instance = fork(server.path, [], { stdio: "pipe" });
+  let serverParams = [];
+  if (server.name === "root" && params.liveServerPort) {
+    serverParams.push("--live-server-port");
+    serverParams.push(params.liveServerPort);
+  }
+  server.instance = fork(server.path, serverParams, { stdio: "pipe" });
   server.instance.stdout.on("data", data => log(server.name, data));
   server.instance.stderr.on("data", buffer => err(buffer.toString("ascii")));
 };

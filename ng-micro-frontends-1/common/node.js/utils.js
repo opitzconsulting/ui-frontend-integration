@@ -116,9 +116,9 @@ module.exports.startModuleServer = (
     console.log(`server started on port ${appPort} successfully.`)
   );
 
+  // if static server port is given as an argument, use port to proxy static requests to the live server.
   if (params.staticServerPort) {
     app.use((req, res, next) => {
-      console.log(req.originalUrl);
       if (/^\/api\/.*/.test(req.originalUrl) === false) {
         let url =
           "http://localhost:" + params.staticServerPort + req.originalUrl;
