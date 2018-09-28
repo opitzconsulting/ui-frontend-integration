@@ -68,6 +68,7 @@ import "core-js/es7/reflect";
  */
 // (window as any).__Zone_enable_cross_context_check = true;
 
+import "custom-event-polyfill/polyfill";
 import "./custom-elements-es5-adapter";
 import "@webcomponents/custom-elements/custom-elements.min";
 
