@@ -1,0 +1,12 @@
+.basket-list {
+  display: table;
+}
+.basket-item {
+  display: table-row;
+}
+.basket-title,
+.basket-count,
+.basket-price,
+.basket-actions {
+  display: table-cell;
+}

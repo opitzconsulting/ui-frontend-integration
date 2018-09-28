@@ -1,0 +1,15 @@
+<div class="basket-list">
+  <div class="basket-item" *ngFor="let item of items">
+    <div class="basket-title">{{ item.title }}</div>
+    <div class="basket-count">{{ item.count }}</div>
+    <div class="basket-price">{{ calcTotal(item) }} {{item.currency }}</div>
+    <div class="basket-actions">
+      <button (click)="removeFromBasket(item)">remove</button>
+    </div>
+  </div>
+
+  <div>
+    <button (click)="clear()">clear</button>
+    <button (click)="goToPayment()">pay</button>
+  </div>
+</div>
