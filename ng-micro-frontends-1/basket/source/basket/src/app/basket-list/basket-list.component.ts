@@ -48,6 +48,10 @@ export class BasketListComponent implements OnInit {
     this.saveItems();
   }
 
+  public goToProduct() {
+    dispatchEvent(new CustomEvent("root:show:product", {}));
+  }
+
   public goToPayment() {
     dispatchEvent(new CustomEvent("root:show:payment", {}));
   }
