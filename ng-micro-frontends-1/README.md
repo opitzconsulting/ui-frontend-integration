@@ -167,3 +167,11 @@ In the current Angular versions is a bug: [see on github.com](https://github.com
 When using multiple angular applications there will be no view encapsulation between these apps. Yes, you could use a native view encapsulation, but this will not work in older browser without shadow dom implementations. Currently Angular only uses numbers to encapsulate components within one single app. To fix this, the `fix-module-style` script will be executed after each productive build for the modules. Keep in mind, when using a live server this may not work correctly.
 
 When the bug is solved, the `fix-module-style` script can be removed.
+
+### usage of Angular Elements
+
+Currently, when adding, removing and re-adding an angular element to the root application there is a problem. In this case, the property binding of the element crashs. So you should always keep elements in dom, only hide it if neccessary.
+
+### communication and state
+
+Modules can't directly access other module properties. For communication between multiple modules, you should use browser events. For state management it's recommend to store the state in the browsers sessionStorage or localStorage. After changing state, you have to inform other modules manually. Keep in mind, don't trust browser storage informations. In the prototype the prices will be stored in the sessionStorage and when you "pay" it, prices will be received from there too. Users can manipulate this easy. For production always retrieve your price informations from your database!
