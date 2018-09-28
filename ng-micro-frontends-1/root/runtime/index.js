@@ -22,7 +22,7 @@ if (params.liveServerPort) {
   console.log(` `);
   console.log(
     ` Using Live-Server http://localhost:${
-      params.staticServerPort
+      params.liveServerPort
     } for change detection and reload strategy`
   );
   console.log(` `);
