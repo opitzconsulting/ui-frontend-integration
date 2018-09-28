@@ -1,0 +1,13 @@
+.product-list {
+  display: table;
+}
+
+.product-item {
+  display: table-row;
+}
+
+.product-title,
+.product-price,
+.product-actions {
+  display: table-cell;
+}

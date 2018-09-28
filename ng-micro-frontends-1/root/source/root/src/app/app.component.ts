@@ -14,19 +14,32 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.loadApps();
+    this.loadApps("product");
+    addEventListener("root:show:product", () => this.showAppByName("product"));
+    addEventListener("root:show:basket", () => this.showAppByName("basket"));
+    addEventListener("root:show:payment", () => this.showAppByName("payment"));
   }
 
   apps: Application[] = [];
   scripts: String[] = [];
 
-  public loadApps() {
+  public loadApps(startApp) {
     this.http.get("http://localhost:8000/api/apps").subscribe((data: any) => {
       this.apps = data.apps;
+
+      const start = this.apps.find(app => app.name === startApp);
+      if (start) this.showApp(start);
     });
   }
 
-  public addApp(app: Application) {
+  public showAppByName(appName: String) {
+    const app = this.apps.find(app => app.name === appName);
+    if (app) {
+      this.showApp(app);
+    }
+  }
+
+  public showApp(app: Application) {
     const url = `http://${app.host}:${app.port}/main.js`;
     if (this.scripts.indexOf(url) == -1) {
       const script = document.createElement("script");
@@ -34,47 +47,11 @@ export class AppComponent implements OnInit {
       document.body.appendChild(script);
       this.scripts.push(url);
     }
-    const parent = document.querySelector("#root-application");
+    const parent = document.querySelector(
+      "#root-application > main"
+    ) as HTMLMainElement;
+    while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
     const elem = document.createElement(app.element);
-    parent.appendChild(elem);
-  }
-
-  public loadProducts() {
-    const url = "http://localhost:8001/main.js";
-    if (this.scripts.indexOf(url) == -1) {
-      const script = document.createElement("script");
-      script.src = url;
-      document.body.appendChild(script);
-      this.scripts.push(url);
-    }
-    const parent = document.querySelector("#root-application");
-    const elem = document.createElement("product-element");
-    parent.appendChild(elem);
-  }
-
-  public loadBasket() {
-    const url = "http://localhost:8002/main.js";
-    if (this.scripts.indexOf(url) == -1) {
-      const script = document.createElement("script");
-      script.src = url;
-      document.body.appendChild(script);
-      this.scripts.push(url);
-    }
-    const parent = document.querySelector("#root-application");
-    const elem = document.createElement("basket-element");
-    parent.appendChild(elem);
-  }
-
-  public loadPayment() {
-    const url = "http://localhost:8003/main.js";
-    if (this.scripts.indexOf(url) == -1) {
-      const script = document.createElement("script");
-      script.src = url;
-      document.body.appendChild(script);
-      this.scripts.push(url);
-    }
-    const parent = document.querySelector("#root-application");
-    const elem = document.createElement("payment-element");
     parent.appendChild(elem);
   }
 }

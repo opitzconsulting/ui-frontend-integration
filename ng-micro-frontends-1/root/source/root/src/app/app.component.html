@@ -1,4 +1,8 @@
 <div id="root-application">
+  <nav>
+    <button *ngFor="let app of apps" (click)="showApp(app)">{{ app.description }}</button>
+  </nav>
+  <main>
 
-  <button *ngFor="let app of apps" (click)="addApp(app)">{{ app.description }}</button>
+  </main>
 </div>

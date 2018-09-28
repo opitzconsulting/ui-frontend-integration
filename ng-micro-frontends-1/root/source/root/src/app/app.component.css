@@ -1,0 +1,13 @@
+#root-application {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#root-application > nav {
+}
+
+#root-application > main {
+  flex: 1;
+}
