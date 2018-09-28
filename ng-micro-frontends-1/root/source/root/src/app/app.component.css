@@ -11,3 +11,7 @@
 #root-application > main {
   flex: 1;
 }
+
+::ng-deep #root-application > main > .hidden {
+  display: none;
+}

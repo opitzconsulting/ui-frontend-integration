@@ -47,11 +47,23 @@ export class AppComponent implements OnInit {
       document.body.appendChild(script);
       this.scripts.push(url);
     }
+    // hide all apps
     const parent = document.querySelector(
       "#root-application > main"
     ) as HTMLMainElement;
-    while (parent.hasChildNodes()) parent.removeChild(parent.firstChild);
-    const elem = document.createElement(app.element);
-    parent.appendChild(elem);
+    const children = parent.children;
+    for (let i = 0; i < children.length; ++i) {
+      if (!children[i].classList.contains("hidden")) {
+        children[i].classList.add("hidden");
+      }
+    }
+    // check if app is already inserted
+    let elem = parent.querySelector(app.element);
+    if (elem) {
+      elem.classList.remove("hidden");
+    } else {
+      const elem = document.createElement(app.element);
+      parent.appendChild(elem);
+    }
   }
 }
