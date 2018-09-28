@@ -1,44 +1,12 @@
-console.log("starting server...");
-
-const express = require("express");
-const path = require("path");
-const http = require("http");
-
-const port = 8001;
-
-const app = express();
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Authorization, Content-Type, User-Agent"
-  );
-  next();
-});
-app.listen(port, () =>
-  console.log(`server started on port ${port} successfully.`)
-);
-
-const staticPath = path.join(__dirname, "./static");
-app.use(express.static(staticPath));
-
 const utils = require("./../../common/node.js/utlis");
-utils.registerApp(
+const app = utils.startModuleServer(
   "localhost",
-  "8000",
+  8000,
   "product",
-  port,
+  8001,
   "product-element",
   "Product"
 );
-process.on("SIGINT", () => {
-  utils.unregisterApp("localhost", "8000", "product");
-  setTimeout(() => process.exit(0), 1000);
-});
 
 const products = [
   {

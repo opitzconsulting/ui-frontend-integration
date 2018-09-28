@@ -43,6 +43,11 @@ export class AppComponent implements OnInit {
     const url = `http://${app.host}:${app.port}/main.js`;
     if (this.scripts.indexOf(url) == -1) {
       const script = document.createElement("script");
+      /*if (app.name === "product") {
+        script.src = "http://localhost:4200/main.js";
+      } else {
+        script.src = url;
+      }*/
       script.src = url;
       document.body.appendChild(script);
       this.scripts.push(url);

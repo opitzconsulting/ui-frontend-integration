@@ -11,6 +11,7 @@ export class ProductRootComponent implements OnInit {
   ngOnInit() {}
 
   public goToCart() {
+    debugger;
     dispatchEvent(new CustomEvent("root:show:basket", {}));
   }
 }
