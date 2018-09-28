@@ -10,6 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.3",
-    "request": "^2.88.0"
+    "http": "0.0.0",
+    "request": "^2.88.0",
+    "socket.io": "^2.1.1"
   }
 }

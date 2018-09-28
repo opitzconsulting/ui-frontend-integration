@@ -35,6 +35,16 @@ const request = require("request");
 const port = 8000;
 
 const app = express();
+const srv = require("http").createServer(app);
+const io = require("socket.io")(srv);
+
+// websocket implementation
+// currently only the root server use the websocket.
+io.on("connection", client => {
+  console.log("client connected");
+  client.on("disconnect", () => console.log("client disconnected"));
+});
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -47,7 +57,7 @@ app.use((req, res, next) => {
   );
   next();
 });
-app.listen(port, () =>
+srv.listen(port, () =>
   console.log(`server started on port ${port} successfully.`)
 );
 
@@ -94,6 +104,8 @@ app.post("/api/apps/:appname", (req, res) => {
     apps.push(app);
     console.log(`App "${appName}" registered at ${app.host}:${app.port}`);
     res.json({ success: true });
+    // emit websocket event, to inform clients that a new app was registered
+    io.emit("app-registration", { app: appName, action: "registered" });
   });
 });
 
@@ -101,4 +113,6 @@ app.delete("/api/apps/:appname", (req, res) => {
   const appName = req.params.appname;
   removeApp(appName);
   res.json({ success: true });
+  // emit websocket event, to inform clients that an app was unregistered
+  io.emit("app-registration", { app: appName, action: "unregistered" });
 });

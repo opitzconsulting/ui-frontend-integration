@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import * as io from "socket.io-client";
 
 import { Application } from "./models/Application";
 
@@ -18,17 +19,35 @@ export class AppComponent implements OnInit {
     addEventListener("root:show:product", () => this.showAppByName("product"));
     addEventListener("root:show:basket", () => this.showAppByName("basket"));
     addEventListener("root:show:payment", () => this.showAppByName("payment"));
+    // initialize application socket handling
+    this.initAppSocket();
+  }
+  // reference to the client websocket
+  private socket;
+  /**
+   * initializes application socket handling
+   */
+  public initAppSocket() {
+    // connect websocket to the root server
+    this.socket = io("http://localhost:8000");
+    // when app registration message received (registrated / unregistrated)
+    this.socket.on("app-registration", (data: any) => {
+      console.log(`SocketInfo: ${data.app} ${data.action}`);
+      // reload available applications
+      this.loadApps();
+    });
   }
 
   apps: Application[] = [];
   scripts: String[] = [];
 
-  public loadApps(startApp) {
+  public loadApps(startApp?) {
     this.http.get("http://localhost:8000/api/apps").subscribe((data: any) => {
       this.apps = data.apps;
-
-      const start = this.apps.find(app => app.name === startApp);
-      if (start) this.showApp(start);
+      if (startApp) {
+        const start = this.apps.find(app => app.name === startApp);
+        if (start) this.showApp(start);
+      }
     });
   }
 
