@@ -1,0 +1,19 @@
+<div class="payment-success" *ngIf="payed">
+  Thanks for your order!
+</div>
+<div class="payment-empty" *ngIf="!payed && items.length===0">
+  There is nothing to pay. Add products to your basket!
+  <button (click)="goToProduct()">products</button>
+</div>
+
+<div class="payment-form" *ngIf="items.length > 0">
+
+  <div>
+    Total price: {{ calcTotal() }}
+  </div>
+
+  <div>
+    <button (click)="doPay()">pay now</button>
+  </div>
+
+</div>
