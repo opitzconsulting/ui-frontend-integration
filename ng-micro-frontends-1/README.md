@@ -19,7 +19,7 @@ You can avoid starting a specific modul server by passing the `--develop` argume
 
 Then you can manually start the module server with the printed commands.
 
-For frontend development, you can use live server functionalities. To do this, avoid starting the modul server by passing the `--development` argument and additional the `--live-server-argument`. For the `--live-server-argument`, you have to pass the port of the live server (e.g. 4200).
+For frontend development, you can use live server functionalities. To do this, avoid starting the modul server by passing the `--development` argument and additional the `--live-server-port` argument. For the `--live-server-port` argument, you have to pass the port of the live server (e.g. 4200).
 
 ```
 ./start-server.sh --develop product --live-server-port 4200
