@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-hashing none",
+    "build": "ng build --prod --output-hashing none && node ./../../../scripts/fix-module-style/index.js basket",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

@@ -57,7 +57,7 @@ Then open the `package.json` file and change the following parts:
 
 ```
 "scripts": {
-  "build": "ng build --prod --output-hashing none"
+  "build": "ng build --prod --output-hashing none && node ./../../../scripts/fix-module-style/index.js [module-name]"
 }
 ```
 
@@ -153,3 +153,17 @@ const app = utils.startModuleServer(
 ```
 
 You're done, restart your servers.
+
+## important notes
+
+### Angular 7 beta
+
+This prototype was developped for Angular 7 by using the beta versions. It should work with older version too, like 6.2. In this case, you have to use other dependency versions.
+
+### view encapsulation
+
+In the current Angular versions is a bug: [see on github.com](https://github.com/angular/angular/issues/16676)
+
+When using multiple angular applications there will be no view encapsulation between these apps. Yes, you could use a native view encapsulation, but this will not work in older browser without shadow dom implementations. Currently Angular only uses numbers to encapsulate components within one single app. To fix this, the `fix-module-style` script will be executed after each productive build for the modules. Keep in mind, when using a live server this may not work correctly.
+
+When the bug is solved, the `fix-module-style` script can be removed.
