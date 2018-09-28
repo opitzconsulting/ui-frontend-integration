@@ -61,6 +61,8 @@ export class AppComponent implements OnInit {
     let elem = parent.querySelector(app.element);
     if (elem) {
       elem.classList.remove("hidden");
+      // important, when app is shown again, app must reload properties from storage
+      dispatchEvent(new CustomEvent(app.name + ":init", {}));
     } else {
       const elem = document.createElement(app.element);
       parent.appendChild(elem);

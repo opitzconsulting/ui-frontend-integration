@@ -11,6 +11,8 @@ export class BasketListComponent implements OnInit {
 
   ngOnInit() {
     this.loadItems();
+    // when re-show app, reload data from storage
+    addEventListener("basket:init", () => this.loadItems());
   }
 
   public items: CartItem[] = [];
