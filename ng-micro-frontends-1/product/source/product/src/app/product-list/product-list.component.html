@@ -2,7 +2,7 @@
 
   <div class="product-item" *ngFor="let product of productService.products">
     <div class="product-title">{{ product.title }}</div>
-    <div class="product-price">{{ product.price }} {{ product.currency }}</div>
+    <div class="product-price">{{ product.price | currency:product.currency:"symbol":"1.2-2" }}</div>
     <div class="product-actions">
       <button (click)="addToCart(product)">add to cart</button>
     </div>

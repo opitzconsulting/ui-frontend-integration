@@ -1,0 +1,8 @@
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#product-root {
+  margin: 10px;
+}
