@@ -31,7 +31,7 @@ After this, you have to start the modul server with `--static-server-port` argum
 ./product/runtime/node index.js --static-server-port 4200
 ```
 
-When file changes are detected, the application is re-started automatically. Please note, this will only work in evergreen browsers.
+When file changes are detected, the application is re-started automatically. Please note, this will only work in evergreen browsers. In the browsers console, there will be some error messages. This messages could be ignored.
 
 ## adding a new module
 
@@ -71,7 +71,7 @@ For _build_ set the following entries:
 "outputPath": "./../../runtime/static"
 ```
 
-For _server_ set the following entries:
+For _serve_ set the following entries:
 
 ```
 "builder": "ngx-build-plus:dev-server"
