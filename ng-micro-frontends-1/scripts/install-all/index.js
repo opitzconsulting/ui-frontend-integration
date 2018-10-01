@@ -9,6 +9,15 @@ const basePath =
     .slice(0, -2)
     .join(path.sep) + path.sep;
 
+// node.js common utils need also an install
+(() => {
+  const nodePath = basePath + "common" + path.sep + "node.js" + path.sep;
+  if (fs.existsSync(nodePath) && fs.existsSync(nodePath + "package.json")) {
+    console.log(`npm install in common/node.js:`);
+    childProcess.execSync(`cd ${nodePath} && npm install`);
+  }
+})();
+
 const modules = fs.readdirSync(basePath);
 
 for (let module of modules) {

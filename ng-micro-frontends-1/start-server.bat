@@ -1,0 +1,1 @@
+node scripts\start-server\index.js %*
