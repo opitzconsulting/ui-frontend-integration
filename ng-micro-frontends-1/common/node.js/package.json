@@ -2,7 +2,7 @@
   "name": "common-node-utils",
   "version": "1.0.0",
   "description": "",
-  "main": "utlis.js",
+  "main": "utils.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -28,14 +28,14 @@ const terminate = () => {
   // kill servers
   for (let i = 1; i < servers.length; ++i) {
     const server = servers[i];
-    log("", `stoping ${server.name} server...`);
+    log("", `stopping ${server.name} server...`);
     server.instance.kill("SIGINT");
   }
   let timeout = setTimeout(() => {
     clearTimeout(timeout);
 
     const server = servers[0];
-    log("", `stoping ${server.name} server...`);
+    log("", `stopping ${server.name} server...`);
     server.instance.kill("SIGINT");
 
     timeout = setTimeout(() => {
