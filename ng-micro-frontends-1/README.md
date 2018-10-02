@@ -61,7 +61,7 @@ Then open the `package.json` file and change the following parts:
 }
 ```
 
-To use the Angular version 7, you have to change a few dependencies. Each dependency, which starts with `@angular/*` must be set to `^7.0.0-beta.0`. The `typescript` dependency must be set to `^3.0.0`. After this, you have to re-install your dependencies by using `npm install`.
+To use the Angular version 7, you have to change a few dependencies. Each dependency, which starts with `@angular/*` must be set to `^7.0.0-rc.0`. The `typescript` dependency must be set to `^3.0.0`. After this, you have to re-install your dependencies by using `npm install`.
 
 Then open the `angular.json` file and change the following parts:
 For _build_ set the following entries:
