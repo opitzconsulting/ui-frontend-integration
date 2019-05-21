@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './models/product';
 import { CartItem } from './models/cart-item';
@@ -7,13 +7,16 @@ import { CartItem } from './models/cart-item';
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private app: ApplicationRef) {}
 
   public products: Product[] = [];
 
   public loadProducts() {
+    console.log('load');
     this.http.get('http://localhost:8001/api/products').subscribe((data: any) => {
       this.products = data.products;
+      console.log('loaded');
+      this.app.tick();
     });
   }
 

@@ -19,6 +19,6 @@ export class AppModule {
   ngDoBootstrap() {
     const productComponent = createCustomElement(ProductRootComponent, { injector: this.injector });
     customElements.define('product-element', productComponent);
-    alert('Custom element available');
+    console.log('Custom element <product-element> available');
   }
 }

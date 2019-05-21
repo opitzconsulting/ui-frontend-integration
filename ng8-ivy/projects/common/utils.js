@@ -130,7 +130,7 @@ module.exports.startModuleServer = (
   } else {
     const staticPath = path.join(
       __dirname,
-      `./../../${appName}/runtime/static`
+      `./../${appName}/server/static`
     );
     console.log(staticPath);
     app.use(express.static(staticPath));

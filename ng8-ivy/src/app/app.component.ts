@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
   }
 
   public showApp(app: Application): void {
-    const url = `http://${app.host}:${app.port}/main.js`;
+    const url = `http://${app.host}:${app.port}/main-es2015.js`;
     if (this.scripts.indexOf(url) === -1) {
       const script = document.createElement('script');
       /*if (app.name === "product") {
