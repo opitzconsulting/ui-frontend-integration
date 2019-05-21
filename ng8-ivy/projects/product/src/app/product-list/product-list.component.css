@@ -1,0 +1,19 @@
+.product-list {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.product-item {
+  display: flex;
+  padding: 5px 0;
+  align-items: center;
+}
+
+.product-title {
+  flex: 1;
+}
+.product-price {
+  width: 100px;
+  text-align: right;
+  padding: 0 10px;
+}
