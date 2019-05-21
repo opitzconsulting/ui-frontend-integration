@@ -15,7 +15,7 @@
     "e2e": "ng e2e",
     "install": "npm run install:root && npm run install:common",
     "install:root": "cd server && npm install",
-    "install:common": "dir && cd projects/common && npm install",
+    "install:common": "cd projects/common && npm install",
     "start:root": "cd server && node index.js",
     "start:product": "cd projects/product/server && node index.js"
   },
