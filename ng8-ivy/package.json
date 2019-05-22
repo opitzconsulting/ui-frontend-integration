@@ -5,13 +5,15 @@
     "ng": "ng",
     "start": "cd server && node start-every-server.js",
     "poststart": "npm run start:product",
-    "build": "npm run build:root && npm run build:shopping-cart && npm run build:product",
+    "build": "npm run build:root && npm run build:payment && npm run build:shopping-cart && npm run build:product",
     "build:root": "ng build --prod",
     "postbuild:root": "cpx dist/ng8-ivy/** server/static",
     "build:shopping-cart": "ng build shopping-cart --prod --single-bundle  --outputHashing=none",
+    "postbuild:shopping-cart": "cpx dist/shopping-cart/main*.js projects/shopping-cart/server/static",
+    "build:payment": "ng build payment --prod --single-bundle  --outputHashing=none",
+    "postbuild:payment": "cpx dist/payment/main*.js projects/payment/server/static",
     "build:product": "ng build product --prod --single-bundle  --outputHashing=none",
     "build:product2": "ng build product --prod --single-bundle  --outputHashing=none --extraWebpackConfig webpack.extra.js",
-    "postbuild:shopping-cart": "cpx dist/shopping-cart/main*.js projects/shopping-cart/server/static",
     "postbuild:product": "cpx dist/product/main*.js projects/product/server/static",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +23,8 @@
     "install:common": "cd projects/common && npm install",
     "start:root": "cd server && node index.js",
     "start:shopping-cart": "cd projects/shopping-cart && node index.js",
-    "start:product": "cd projects/product/server && node index.js"
+    "start:product": "cd projects/product/server && node index.js",
+    "start:payment": "cd projects/payment/server && node index.js"
   },
   "private": true,
   "dependencies": {
