@@ -9,6 +9,7 @@
     "build:root": "ng build --prod",
     "postbuild:root": "cpx dist/ng8-ivy/** server/static",
     "build:product": "ng build product --prod --single-bundle  --outputHashing=none",
+    "build:product2": "ng build product --prod --single-bundle  --outputHashing=none --extraWebpackConfig webpack.extra.js",
     "postbuild:product": "cpx dist/product/main*.js projects/product/server/static",
     "test": "ng test",
     "lint": "ng lint",

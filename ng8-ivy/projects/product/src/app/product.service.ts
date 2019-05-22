@@ -7,6 +7,7 @@ import { CartItem } from './models/cart-item';
   providedIn: 'root'
 })
 export class ProductService {
+  // , private chgRef: ChangeDetectorRef
   constructor(private http: HttpClient, private app: ApplicationRef) {}
 
   public products: Product[] = [];
