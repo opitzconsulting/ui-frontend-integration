@@ -16,8 +16,7 @@ export class ProductService {
     console.log('load');
     this.http.get('http://localhost:8001/api/products').subscribe((data: any) => {
       this.products = data.products;
-      console.log('loaded');
-      this.app.tick();
+      this.app.tick(); // triggering change detection manually
     });
   }
 

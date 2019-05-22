@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.loadApps('product');
     addEventListener('root:show:product', () => this.showAppByName('product'));
-    addEventListener('root:show:basket', () => this.showAppByName('basket'));
+    addEventListener('root:show:shopping-cart', () => this.showAppByName('shopping-cart'));
     addEventListener('root:show:payment', () => this.showAppByName('payment'));
     // initialize application socket handling
     this.initAppSocket();
@@ -64,11 +64,6 @@ export class AppComponent implements OnInit {
     const url = `http://${app.host}:${app.port}/main-es2015.js`;
     if (this.scripts.indexOf(url) === -1) {
       const script = document.createElement('script');
-      /*if (app.name === "product") {
-        script.src = "http://localhost:4200/main.js";
-      } else {
-        script.src = url;
-      }*/
       script.src = url;
       document.body.appendChild(script);
       this.scripts.push(url);
@@ -89,6 +84,9 @@ export class AppComponent implements OnInit {
       elem.classList.remove('hidden');
       // important, when app is shown again, app must reload properties from storage
       dispatchEvent(new CustomEvent(app.name + ':init', {}));
+
+      // tslint:disable-next-line:no-console
+      console.debug('Send message ' + app.name + ':init');
     } else {
       const newElement = document.createElement(app.element);
       parent.appendChild(newElement);

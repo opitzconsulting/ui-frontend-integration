@@ -1,0 +1,25 @@
+.basket-list {
+  width: 100%;
+  margin-top: 20px;
+}
+.basket-item {
+  display: flex;
+  padding: 5px 0;
+  align-items: center;
+}
+
+.basket-title {
+  flex: 1;
+}
+.basket-price-single,
+.basket-price-total {
+  width: 100px;
+  text-align: right;
+  padding: 0 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
