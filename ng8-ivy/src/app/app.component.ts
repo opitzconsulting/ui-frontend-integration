@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-import { Component } from '@angular/core';
-=======
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as io from 'socket.io-client';
 
 import { Application } from './models/Application';
->>>>>>> ivy
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-<<<<<<< HEAD
-export class AppComponent {
-  title = 'ng8-ivy';
-=======
 export class AppComponent implements OnInit {
   // reference to the client websocket
   private socket;
@@ -100,5 +92,4 @@ export class AppComponent implements OnInit {
       parent.appendChild(newElement);
     }
   }
->>>>>>> ivy
 }
