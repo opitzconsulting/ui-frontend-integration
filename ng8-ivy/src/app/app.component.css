@@ -1,0 +1,19 @@
+#root-application {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+#root-application > nav {
+  border-bottom: 1px solid #e3e3e3;
+  padding: 10px;
+}
+
+#root-application > main {
+  flex: 1;
+}
+
+::ng-deep #root-application > main > .hidden {
+  display: none;
+}

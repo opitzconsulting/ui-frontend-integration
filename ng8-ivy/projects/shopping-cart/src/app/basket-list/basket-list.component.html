@@ -1,0 +1,20 @@
+<div class="basket-empty" *ngIf="items.length === 0">
+  There is nothing in your basket. Add products to it!
+  <br /><br />
+  <button (click)="goToProduct()">products</button>
+</div>
+<div class="basket-list" *ngIf="items.length > 0">
+  <div class="basket-item" *ngFor="let item of items">
+    <div class="basket-title">{{ item.title }}</div>
+    <div class="basket-count">{{ item.count }}</div>
+    <div class="basket-price-single">{{ item.price | currency:item.currency:"symbol":"1.2-2" }}</div>
+    <div class="basket-price-total">{{ calcTotal(item) | currency:item.currency:"symbol":"1.2-2" }}</div>
+    <div class="basket-actions">
+      <button (click)="removeFromBasket(item)">remove</button>
+    </div>
+  </div>
+  <div class="buttons">
+    <button (click)="clear()">clear</button>
+    <button (click)="goToPayment()">pay</button>
+  </div>
+</div>

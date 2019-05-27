@@ -18,13 +18,8 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": [
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
@@ -82,27 +77,16 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -134,13 +118,8 @@
             "main": "projects/product/src/main.ts",
             "polyfills": "projects/product/src/polyfills.ts",
             "tsConfig": "projects/product/tsconfig.app.json",
-            "assets": [
-              "projects/product/src/favicon.ico",
-              "projects/product/src/assets"
-            ],
-            "styles": [
-              "projects/product/src/styles.css"
-            ],
+            "assets": ["projects/product/src/favicon.ico", "projects/product/src/assets"],
+            "styles": ["projects/product/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -194,13 +173,8 @@
             "polyfills": "projects/product/src/polyfills.ts",
             "tsConfig": "projects/product/tsconfig.spec.json",
             "karmaConfig": "projects/product/karma.conf.js",
-            "assets": [
-              "projects/product/src/favicon.ico",
-              "projects/product/src/assets"
-            ],
-            "styles": [
-              "projects/product/src/styles.css"
-            ],
+            "assets": ["projects/product/src/favicon.ico", "projects/product/src/assets"],
+            "styles": ["projects/product/src/styles.css"],
             "scripts": []
           }
         },
@@ -212,9 +186,7 @@
               "projects/product/tsconfig.spec.json",
               "projects/product/e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
@@ -226,6 +198,206 @@
           "configurations": {
             "production": {
               "devServerTarget": "product:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "shopping-cart": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/shopping-cart",
+      "sourceRoot": "projects/shopping-cart/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/shopping-cart",
+            "index": "projects/shopping-cart/src/index.html",
+            "main": "projects/shopping-cart/src/main.ts",
+            "polyfills": "projects/shopping-cart/src/polyfills.ts",
+            "tsConfig": "projects/shopping-cart/tsconfig.app.json",
+            "assets": ["projects/shopping-cart/src/favicon.ico", "projects/shopping-cart/src/assets"],
+            "styles": ["projects/shopping-cart/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/shopping-cart/src/environments/environment.ts",
+                  "with": "projects/shopping-cart/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "shopping-cart:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shopping-cart:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shopping-cart:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/shopping-cart/src/test.ts",
+            "polyfills": "projects/shopping-cart/src/polyfills.ts",
+            "tsConfig": "projects/shopping-cart/tsconfig.spec.json",
+            "karmaConfig": "projects/shopping-cart/karma.conf.js",
+            "assets": ["projects/shopping-cart/src/favicon.ico", "projects/shopping-cart/src/assets"],
+            "styles": ["projects/shopping-cart/src/styles.css"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/shopping-cart/tsconfig.app.json",
+              "projects/shopping-cart/tsconfig.spec.json",
+              "projects/shopping-cart/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/shopping-cart/e2e/protractor.conf.js",
+            "devServerTarget": "shopping-cart:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shopping-cart:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "payment": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/payment",
+      "sourceRoot": "projects/payment/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/payment",
+            "index": "projects/payment/src/index.html",
+            "main": "projects/payment/src/main.ts",
+            "polyfills": "projects/payment/src/polyfills.ts",
+            "tsConfig": "projects/payment/tsconfig.app.json",
+            "assets": ["projects/payment/src/favicon.ico", "projects/payment/src/assets"],
+            "styles": ["projects/payment/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/payment/src/environments/environment.ts",
+                  "with": "projects/payment/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "payment:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "payment:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "payment:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/payment/src/test.ts",
+            "polyfills": "projects/payment/src/polyfills.ts",
+            "tsConfig": "projects/payment/tsconfig.spec.json",
+            "karmaConfig": "projects/payment/karma.conf.js",
+            "assets": ["projects/payment/src/favicon.ico", "projects/payment/src/assets"],
+            "styles": ["projects/payment/src/styles.css"],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/payment/tsconfig.app.json",
+              "projects/payment/tsconfig.spec.json",
+              "projects/payment/e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/payment/e2e/protractor.conf.js",
+            "devServerTarget": "payment:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "payment:serve:production"
             }
           }
         }

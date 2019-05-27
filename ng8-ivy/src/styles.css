@@ -1,1 +1,33 @@
+<<<<<<< HEAD
 /* You can add global styles to this file, and also import other style files */
+=======
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+app-root {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+button {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 10px 0 0;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+}
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+>>>>>>> ivy
